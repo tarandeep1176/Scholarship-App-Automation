@@ -1,0 +1,25 @@
+from selenium.webdriver.common.by import By
+
+class PersonalPageObjects:
+    type_of_document_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-select-arrow-personal-document-type']")
+    dropdown_options = (By.XPATH,"//li[@role='option']")
+    document_number = (By.CSS_SELECTOR,"[data-test-id='input-personal-document-number']")
+    marital_status_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-select-arrow-personal-marital-status']")
+    profession_input = (By.CSS_SELECTOR,"[data-test-id='input-personal-profession']")
+    dob_input = (By.CSS_SELECTOR,"[data-test-id='date-picker-input-personal-birth-date']")
+    country_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-personal-birth-country']")
+    country_input = (By.CSS_SELECTOR,"[data-test-id='autocomplete-input-personal-birth-country']")
+    state_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-personal-birth-state']")
+    state_input = (By.CSS_SELECTOR,"[data-test-id='autocomplete-input-personal-birth-state']")
+    city_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-personal-birth-city']")
+    city_input = (By.CSS_SELECTOR,"[data-test-id='autocomplete-input-personal-birth-city']")
+    nationality_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-personal-birth-nationality']")
+    nationality_input = (By.CSS_SELECTOR,"[data-test-id='autocomplete-input-personal-birth-nationality']")
+    country_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-personal-birth-country']")
+    monthly_income_input = (By.CSS_SELECTOR,"[data-test-id='input-personal-monthly-income']")
+    monthly_expense_input = (By.CSS_SELECTOR,"[data-test-id='input-personal-monthly-expense']")
+    financially_dependent = (By.CSS_SELECTOR,"[data-test-id='radio-input-personal-financially-dependent-yes']")
+    has_children = (By.CSS_SELECTOR,"[data-test-id='radio-input-personal-has-children-yes']")
+    children_age = (By.CSS_SELECTOR,"[data-test-id='input-personal-age-range-+18']")
+    continue_btn = (By.CSS_SELECTOR,"[data-test-id='btn-continue-personal']")
+    
