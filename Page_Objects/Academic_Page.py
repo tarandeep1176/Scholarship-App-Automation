@@ -1,0 +1,11 @@
+from selenium.webdriver.common.by import By
+
+class AcademicPageObjects:
+    educational_level_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-select-arrow-academic-education-level-1']")
+    dropdown_options = (By.XPATH,"//li[@role='option']")
+    university_input = (By.CSS_SELECTOR,"[data-test-id='input-academic-education-institution-1']")
+    degree_input = (By.CSS_SELECTOR,"[data-test-id='input-academic-education-degree-1']")
+    online_study_mode = (By.CSS_SELECTOR,"[data-test-id='radio-input-academic-online-study-experience-yes']")
+    training_checkbox = (By.CSS_SELECTOR,"[data-test-id='academic-online-study-experience']")
+    other_expertise = (By.CSS_SELECTOR,"[data-test-id='input-academic-other-expertise']")
+    continue_btn = (By.CSS_SELECTOR,"[data-test-id='btn-continue-academic']")
