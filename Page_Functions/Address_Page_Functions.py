@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from Page_Objects.Address_Page import AddressPageObjects
 from selenium.webdriver.common.keys import Keys
@@ -11,6 +12,14 @@ class AddressPageFunctions(AddressPageObjects):
             self.driver = driver
             self.wait = WebDriverWait(driver, 15)
                 
+
+        def is_element_present(self, locator, timeout=3):
+            try:
+                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+                return True
+            except TimeoutException:
+                return False
+
         def click_add_email(self):
             addEmailButton = self.wait.until(EC.presence_of_element_located(self.add_email_btn))
             addEmailButton.click()
@@ -66,11 +75,32 @@ class AddressPageFunctions(AddressPageObjects):
             time.sleep(3)
             country.click()
             time.sleep(3)
-            countryInput = self.wait.until(EC.visibility_of_element_located(self.country_input))
-            countryInput.send_keys("Chandigarh")
-            countryInput.send_keys(Keys.DOWN)
-            countryInput.send_keys(Keys.ENTER)
+            options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+            random_option = random.choice(options)
+            random_option.click()
             time.sleep(3)
+        
+        def select_state(self):
+            if self.is_element_present(self.state_dropdown, timeout=3):
+                state = self.wait.until(EC.visibility_of_element_located(self.state_dropdown))
+                time.sleep(3)
+                state.click()
+                time.sleep(3)
+                options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+                random_option = random.choice(options)
+                random_option.click()
+                time.sleep(3)
+            
+        def select_city_of_residence(self):
+            if self.is_element_present(self.city_of_residency_dropdown, timeout=3):
+                city = self.wait.until(EC.visibility_of_element_located(self.city_of_residency_dropdown))
+                time.sleep(3)
+                city.click()
+                time.sleep(3)
+                options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+                random_option = random.choice(options)
+                random_option.click()
+                time.sleep(3)
             
         def enter_zipcode(self,zipcode):
             zipCodeInput = self.wait.until(EC.visibility_of_element_located(self.zip_code_input))
@@ -83,6 +113,9 @@ class AddressPageFunctions(AddressPageObjects):
             addressInput = self.wait.until(EC.visibility_of_element_located(self.address_input))
             addressInput.click()
             time.sleep(3)
+            addressInput.send_keys(Keys.CONTROL + "a")
+            addressInput.send_keys(Keys.DELETE)
+            time.sleep(2)
             addressInput.send_keys(address)
             time.sleep(3)
             

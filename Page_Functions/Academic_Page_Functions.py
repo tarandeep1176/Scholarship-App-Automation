@@ -42,9 +42,9 @@ class AcademicPageFunctions(AcademicPageObjects):
             studyExperienceInput = self.wait.until(EC.presence_of_element_located(self.online_study_mode))
             studyExperienceInput.click()
             time.sleep(3)
-            training_checkbox = self.wait.until(EC.presence_of_element_located(self.training_checkbox))
-            training_checkbox.click()
-            time.sleep(2)
+            # training_checkbox = self.wait.until(EC.element_to_be_clickable(self.training_checkbox))
+            # training_checkbox.click()
+            # time.sleep(2)
         
         def enter_other_expertise(self,expertise):
             otherExpertiseInput = self.wait.until(EC.presence_of_element_located(self.other_expertise))

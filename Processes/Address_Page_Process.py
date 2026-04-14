@@ -15,6 +15,8 @@ class AddressPageProcess:
         self.address.select_type_of_housing()
         self.address.select_housing_condition()
         self.address.select_country()
+        self.address.select_state()
+        self.address.select_city_of_residence()
         self.address.enter_zipcode(data.zipcode)
         self.address.enter_address(data.address)
         self.address.click_continue_button()

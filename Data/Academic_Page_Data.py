@@ -5,7 +5,7 @@ class AcademicPageMother:
     def __init__(self):
         self.fake = Faker()
         self.university = self.fake.company()
-        self.degree = self.fake.word()
+        self.degree = self.fake.job()
         self.other_expertise = self.fake.catch_phrase()
         
     def get(self):

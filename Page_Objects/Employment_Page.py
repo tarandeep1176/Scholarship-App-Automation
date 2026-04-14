@@ -1,0 +1,21 @@
+from selenium.webdriver.common.by import By
+
+class EmploymentPageObjects:
+    institution_name_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-information-institution-name']")
+    position_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-information-position']")
+    area_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-information-area']")
+    working_category_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-select-arrow-employment-information-worker-category']")
+    working_category_options = (By.XPATH,"//li[@role='option']")
+    activity_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-information-activity']")
+    senior_in_position_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-select-arrow-employment-information-seniority-in-position']")
+    monthly_salary_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-monthly-salary']")
+    country_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-employment-address-country']")
+    state_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-employment-address-state']")
+    city_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-employment-address-city']")
+    dropdown_options = (By.XPATH,"//input[@role='combobox']")
+    zip_code_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-zip-code']")
+    address_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-address']")
+    landline_number_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-employment-contact-landline-phone']")
+    phone_number_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-employment-contact-phone-number']")
+    website_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-information-website']")
+    continue_btn = (By.CSS_SELECTOR,"[data-test-id='btn-continue-employment']")
