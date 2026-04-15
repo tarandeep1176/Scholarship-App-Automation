@@ -10,6 +10,7 @@ from Page_Functions.Reference_Page_Functions import ReferencePageFunctions
 from Page_Functions.Documents_Page_Functions import DocumentsPageFunctions
 from Page_Functions.Additional_Page_Functions import AdditionalPageFunctions
 from Page_Functions.Summary_Page_Functions import SummaryPageFunctions
+from Page_Functions.Submitted_Page_Functions import SubmittedPageFunctions
 
 from Processes.Login_Page_Process import LoginPageProcess
 from Processes.Welcome_Page_Process import WelcomePageProcess
@@ -21,6 +22,7 @@ from Processes.Reference_Page_Process import ReferencePageProcess
 from Processes.Documents_Page_Process import DocumentsPageProcess
 from Processes.Additional_Page_Process import AdditionalPageProcess
 from Processes.Summary_Page_Process import SummaryPageProcess
+from Processes.Submitted_Page_Process import SubmittedPageProcess
 
 data = ConfigData()
 driver = Import_libraries.get_driver()
@@ -37,6 +39,7 @@ reference_page_functions = ReferencePageFunctions(driver)
 documents_page_functions = DocumentsPageFunctions(driver)
 additional_page_functions = AdditionalPageFunctions(driver)
 summary_page_functions = SummaryPageFunctions(driver)
+submitted_page_functions = SubmittedPageFunctions(driver)
 
 def test_login_page():
     login = LoginPageProcess(login_page_functions)
@@ -77,3 +80,7 @@ def test_Additional_page():
 def test_Summary_page():
     summary = SummaryPageProcess(summary_page_functions)
     summary.run_process()
+    
+def test_Submitted_page():
+    submitted = SubmittedPageProcess(submitted_page_functions)
+    submitted.run_process()

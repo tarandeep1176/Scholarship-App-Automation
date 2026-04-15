@@ -17,7 +17,7 @@ class DocumentsPageFunctions(DocumentsPageObjects):
             time.sleep(3)
 
         def upload_curriculum_vitae(self):
-            file_path = os.path.abspath("static/dummy-pdf.pdf")
+            file_path = os.path.abspath("static/file-example_PDF_1MB.pdf")
             file_input = self.wait.until(EC.presence_of_element_located(self.curriculum_vitae_upload_input))
             file_input.send_keys(file_path)
             time.sleep(3)
@@ -29,7 +29,7 @@ class DocumentsPageFunctions(DocumentsPageObjects):
             time.sleep(3)
             
         def upload_other_document(self):
-            file_path = os.path.abspath("static/dummy-pdf.pdf")
+            file_path = os.path.abspath("static/file-example_PDF_1MB.pdf")
             file_input = self.wait.until(EC.presence_of_element_located(self.other_upload_input))
             file_input.send_keys(file_path)
             time.sleep(3)

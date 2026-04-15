@@ -6,5 +6,7 @@ class WelcomePageProcess:
         self.welcome = welcome
 
     def run_process(self):
+        self.welcome.check_snackbar_message()
+        self.welcome.check_welcome_message()
         self.welcome.click_get_started()
 

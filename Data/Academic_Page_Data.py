@@ -6,6 +6,8 @@ class AcademicPageMother:
         self.fake = Faker()
         self.university = self.fake.company()
         self.degree = self.fake.job()
+        self.start_date  = f"{self.fake.month()}/{self.fake.year()}"
+        self.grad_date = f"{self.fake.month()}/{self.fake.year()}"
         self.other_expertise = self.fake.catch_phrase()
         
     def get(self):
@@ -13,6 +15,8 @@ class AcademicPageMother:
             AcademicData = AcademicData(
                 university = self.university,
                 degree = self.degree,
+                start_date = self.start_date,
+                grad_date = self.grad_date,
                 other_expertise = self.other_expertise
             )
         )

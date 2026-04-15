@@ -89,7 +89,7 @@ class EmploymentPageFunctions(EmploymentPageObjects):
             options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
             random_option = random.choice(options)
             random_option.click()
-            time.sleep(3)
+            time.sleep(4)
             
         def select_state(self):
             if self.is_element_present(self.state_dropdown, timeout=3):

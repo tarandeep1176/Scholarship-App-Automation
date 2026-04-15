@@ -37,6 +37,20 @@ class AcademicPageFunctions(AcademicPageObjects):
             degreeInput.send_keys(Keys.DELETE)
             time.sleep(3)
             degreeInput.send_keys(degree)
+            
+        def enter_starting_date(self,start_date):
+            startingDateInput = self.wait.until(EC.presence_of_element_located(self.starting_date))
+            startingDateInput.click()
+            time.sleep(3)
+            startingDateInput.send_keys(start_date)
+            time.sleep(3)
+            
+        def enter_graduation_date(self,grad_date):
+            graduationDateInput = self.wait.until(EC.presence_of_element_located(self.graduation_date))
+            graduationDateInput.click()
+            time.sleep(3)
+            graduationDateInput.send_keys(grad_date)
+            time.sleep(3)
 
         def select_study_experience(self):
             studyExperienceInput = self.wait.until(EC.presence_of_element_located(self.online_study_mode))
