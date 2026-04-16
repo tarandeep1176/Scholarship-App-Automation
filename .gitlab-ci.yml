@@ -1,0 +1,80 @@
+stages:
+  - test
+  - report
+  - pages
+
+e2e-tests:
+  stage: test
+  image: docker:24.0.5
+
+  services:
+    - docker:24.0.5-dind
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    SELENIUM_HEADLESS: "1"
+
+  before_script:
+    - apk add --no-cache bash dos2unix
+    - mkdir -p allure-results screenshots assets
+
+  script:
+    # env setup
+    - echo "APP_EMAIL=${APP_EMAIL}" >> .env.example
+    - echo "APP_PASSWORD=${APP_PASSWORD}" >> .env.example
+    - echo "LANGUAGE=${LANGUAGE}" >> .env.example
+    - cp .env.example .env
+
+    # script setup
+    - dos2unix run_tests_with_novnc.sh
+    - chmod +x run_tests_with_novnc.sh
+
+    # run script
+    - bash ./run_tests_with_novnc.sh
+
+  artifacts:
+    when: always
+    paths:
+      - allure-results/
+      - screenshots/
+      - report.html
+      - assets/
+
+
+allure-report:
+  stage: report
+  image: eclipse-temurin:11-jre
+
+  needs:
+    - job: e2e-tests
+      artifacts: true
+
+  script:
+    - apt-get update && apt-get install -y wget unzip
+    - wget https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.zip
+    - unzip allure-2.25.0.zip
+    - mv allure-2.25.0 /opt/allure
+    - ln -s /opt/allure/bin/allure /usr/bin/allure
+
+    - if [ -d "allure-results" ]; then allure generate allure-results -o allure-report --clean; else echo "No results found"; fi
+
+  artifacts:
+    when: always
+    paths:
+      - allure-report/
+
+
+pages:
+  stage: pages
+
+  needs:
+    - allure-report
+
+  script:
+    - mkdir -p public
+    - cp -r allure-report/* public/ || echo "No report to copy"
+
+  artifacts:
+    paths:
+      - public
