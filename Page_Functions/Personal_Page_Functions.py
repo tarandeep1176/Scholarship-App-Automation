@@ -1,3 +1,4 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Page_Objects.Personal_Page import PersonalPageObjects
@@ -11,6 +12,13 @@ class PersonalPageFunctions(PersonalPageObjects):
             self.driver = driver
             self.wait = WebDriverWait(driver, 15)
                 
+        def is_element_present(self, locator, timeout=3):
+            try:
+                WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+                return True
+            except TimeoutException:
+                return False
+            
         def select_document_type(self):
             documentDropdown = self.wait.until(EC.presence_of_element_located(self.type_of_document_dropdown))
             documentDropdown.click()
@@ -51,50 +59,45 @@ class PersonalPageFunctions(PersonalPageObjects):
             time.sleep(2)
             dobInput.send_keys(dob)
             
-        def select_country(self):
+        def select_country_personal(self):
             country = self.wait.until(EC.visibility_of_element_located(self.country_dropdown))
             time.sleep(3)
             country.click()
             time.sleep(3)
-            countryInput = self.wait.until(EC.visibility_of_element_located(self.country_input))
-            countryInput.send_keys("India")
-            countryInput.send_keys(Keys.DOWN)
-            countryInput.send_keys(Keys.DOWN)
-            countryInput.send_keys(Keys.ENTER)
-            time.sleep(3)
+            options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+            random_option = random.choice(options)
+            random_option.click()
             
-        def select_state(self):
-            state = self.wait.until(EC.visibility_of_element_located(self.state_dropdown))
-            time.sleep(3)
-            state.click()
-            time.sleep(3)
-            stateInput = self.wait.until(EC.visibility_of_element_located(self.state_input))
-            stateInput.send_keys("Chandigarh")
-            stateInput.send_keys(Keys.DOWN)
-            stateInput.send_keys(Keys.ENTER)
-            time.sleep(3)
+        def select_state_personal(self):
+            if self.is_element_present(self.state_dropdown, timeout=3):
+                state = self.wait.until(EC.visibility_of_element_located(self.state_dropdown))
+                time.sleep(3)
+                state.click()
+                time.sleep(3)
+                options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+                random_option = random.choice(options)
+                random_option.click()
+                time.sleep(3)
             
-        def select_city(self):
-            city = self.wait.until(EC.visibility_of_element_located(self.city_dropdown))
-            time.sleep(3)
-            city.click()
-            time.sleep(3)
-            cityInput = self.wait.until(EC.visibility_of_element_located(self.city_input))
-            cityInput.send_keys("Chandigarh")
-            cityInput.send_keys(Keys.DOWN)
-            cityInput.send_keys(Keys.ENTER)
-            time.sleep(3)
+        def select_city_personal(self):
+            if self.is_element_present(self.city_dropdown, timeout=3):
+                city = self.wait.until(EC.visibility_of_element_located(self.city_dropdown))
+                time.sleep(3)
+                city.click()
+                time.sleep(3)
+                options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+                random_option = random.choice(options)
+                random_option.click()
+                time.sleep(3)
             
         def select_nationality(self):
             nationality = self.wait.until(EC.visibility_of_element_located(self.nationality_dropdown))
             time.sleep(3)
             nationality.click()
             time.sleep(3)
-            nationalityInput = self.wait.until(EC.visibility_of_element_located(self.nationality_input))
-            nationalityInput.send_keys("India")
-            nationalityInput.send_keys(Keys.DOWN)
-            nationalityInput.send_keys(Keys.DOWN)
-            nationalityInput.send_keys(Keys.ENTER)
+            options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+            random_option = random.choice(options)
+            random_option.click()
             time.sleep(3)
             
         def enter_monthly_income(self,monthly_income):

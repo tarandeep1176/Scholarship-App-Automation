@@ -6,8 +6,10 @@ class AcademicPageMother:
         self.fake = Faker()
         self.university = self.fake.company()
         self.degree = self.fake.job()
-        self.start_date  = f"{self.fake.month()}/{self.fake.year()}"
-        self.grad_date = f"{self.fake.month()}/{self.fake.year()}"
+        start = self.fake.date_between(start_date='-10y', end_date='-5y')
+        grad = self.fake.date_between(start_date=start, end_date='today')
+        self.start_date = start.strftime("%m/%Y")
+        self.grad_date = grad.strftime("%m/%Y")
         self.other_expertise = self.fake.catch_phrase()
         
     def get(self):

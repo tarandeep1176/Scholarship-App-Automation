@@ -12,7 +12,7 @@ class EmploymentPageObjects:
     country_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-employment-address-country']")
     state_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-employment-address-state']")
     city_dropdown = (By.CSS_SELECTOR,"[data-test-id='btn-autocomplete-arrow-employment-address-city']")
-    dropdown_options = (By.XPATH,"//input[@role='combobox']")
+    dropdown_options = (By.XPATH, "//li[@role='option']")
     zip_code_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-zip-code']")
     address_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-address']")
     landline_number_input = (By.CSS_SELECTOR,"[data-test-id='input-employment-address-employment-contact-landline-phone']")

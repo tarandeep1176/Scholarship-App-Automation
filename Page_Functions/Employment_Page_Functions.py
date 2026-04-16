@@ -80,16 +80,18 @@ class EmploymentPageFunctions(EmploymentPageObjects):
             monthlySalaryInput.send_keys(Keys.DELETE)
             time.sleep(3)
             monthlySalaryInput.send_keys(monthly_salary)
+            time.sleep(2)
          
         def select_country(self):
             country = self.wait.until(EC.visibility_of_element_located(self.country_dropdown))
             time.sleep(3)
             country.click()
             time.sleep(3)
-            options = self.wait.until(EC.presence_of_all_elements_located(self.dropdown_options))
+            options = self.wait.until(EC.visibility_of_all_elements_located(self.dropdown_options))
             random_option = random.choice(options)
+            time.sleep(2)
             random_option.click()
-            time.sleep(4)
+            time.sleep(3)
             
         def select_state(self):
             if self.is_element_present(self.state_dropdown, timeout=3):

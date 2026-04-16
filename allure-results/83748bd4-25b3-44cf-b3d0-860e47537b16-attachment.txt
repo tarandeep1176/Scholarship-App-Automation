@@ -1,0 +1,3 @@
+Snack-Bar message Extracted as: Login successful
+No Welcome Message Encountered.
+Already logged in.

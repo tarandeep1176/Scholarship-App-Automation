@@ -1,0 +1,2 @@
+Snack-Bar message Extracted as: Login successful
+Welcome message Extracted as: Welcome to the online scholarship application form of program Architectural and Urban Planning Project Management

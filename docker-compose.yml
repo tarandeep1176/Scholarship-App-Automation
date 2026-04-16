@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  # Selenium Chrome service with VNC for visual debugging
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: chrome
+    shm_size: 2g
+    ports:
+    - "4444:4444"
+    - "7900:7900"
+    environment:
+    - SE_VNC_NO_PASSWORD=1
+    - START_XVFB=true
+    - SE_SCREEN_WIDTH=1920
+    - SE_SCREEN_HEIGHT=1080
+    networks:
+    - scholarship-automation-net
+
+  # Test runner service
+  selenium-tests:
+    build: .
+    container_name: selenium-tests
+    depends_on:
+      - chrome
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SELENIUM_HEADLESS=0
+      - MOCK_MODE=0
+      - SELENIUM_REMOTE_URL=http://chrome:4444/wd/hub
+
+    volumes:
+      - .:/app
+      # - ./Upload_Files:/app/Upload_Files:rw
+    networks:
+      - scholarship-automation-net
+    command: python -m pytest main.py -v --html=/app/report.html --self-contained-html --capture=tee-sys --alluredir=/app/allure-results
+
+networks:
+  scholarship-automation-net:
+    driver: bridge
